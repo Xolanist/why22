@@ -1,0 +1,94 @@
+name: why
+about: Lightweight implementation of the Mimblewimble protocol.
+author: The Why Team
+
+args:
+  - testnet:
+      help: Run why against the Testnet (as opposed to mainnet)
+      long: testnet
+      takes_value: false
+  - usernet:
+      help: Run why as a local-only network. Doesn't block peer connections but will not connect to any peer or seed
+      long: usernet
+      takes_value: false
+subcommands:
+  - clean:
+      about: Clean Why chain data
+  - server:
+      about: Control the Why server
+      args:
+        - config_file:
+            help: Path to a why-server.toml configuration file
+            short: c
+            long: config_file
+            takes_value: true
+        - port:
+            help: Port to start the P2P server on
+            short: p
+            long: port
+            takes_value: true
+        - api_port:
+            help: Port on which to start the api server (e.g. transaction pool api)
+            short: api
+            long: api_port
+            takes_value: true
+        - seed:
+            help: Override seed node(s) to connect to
+            short: s
+            long: seed
+            takes_value: true
+        - wallet_url:
+            help: The wallet listener to which mining rewards will be sent
+            short: w
+            long: wallet_url
+            takes_value: true
+      subcommands:
+        - config:
+            about: Generate a configuration why-server.toml file in the current directory
+        - run:
+            about: Run the Why server in this console
+  - client:
+      about: Communicates with the Why server
+      subcommands:
+        - status:
+            about: Current status of the Why chain
+        - listconnectedpeers:
+            about: Print a list of currently connected peers
+        - ban:
+            about: Ban peer
+            args:
+              - peer:
+                  help: Peer ip and port (e.g. 10.12.12.13:13614)
+                  short: p
+                  long: peer
+                  required: true
+                  takes_value: true
+        - unban:
+            about: Unban peer
+            args:
+              - peer:
+                  help: Peer ip and port (e.g. 10.12.12.13:13614)
+                  short: p
+                  long: peer
+                  required: true
+                  takes_value: true
+        - resetchainhead:
+            about: Resets the local chain head
+            args:
+                - hash:
+                    help: The header hash to reset to
+                    required: true
+        - verify-chain:
+            about: Trigger a verication of the rangeproofs, kernel signatures and excesses.
+            args:
+                - fast:
+                    help:  if present, will skip verification of rangeproofs, kernel signatures and will only validate the sum of kernel excesses. 
+                    short: f
+                    long: fast
+                    takes_value: false
+        - invalidateheader:
+            about: Adds header hash to denylist
+            args:
+                - hash:
+                    help: The header hash to invalidate
+                    required: true

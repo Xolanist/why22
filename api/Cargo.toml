@@ -1,0 +1,38 @@
+[package]
+name = "why_api"
+version = "5.3.0"
+authors = ["Why Developers <mimblewimble@lists.launchpad.net>"]
+description = "APIs for why, a simple, private and scalable cryptocurrency implementation based on the Mimblewimble chain format."
+license = "Apache-2.0"
+repository = "https://github.com/mimblewimble/why"
+keywords = [ "crypto", "why", "mimblewimble" ]
+workspace = ".."
+edition = "2018"
+
+[dependencies]
+easy-jsonrpc-mw = "0.5.4"
+hyper = "0.13"
+lazy_static = "1"
+regex = "1"
+ring = "0.16"
+serde = "1"
+serde_derive = "1"
+serde_json = "1"
+thiserror = "1"
+log = "0.4"
+tokio = { version = "0.2", features = ["full"] }
+tokio-rustls = "0.13"
+http = "0.2"
+hyper-rustls = "0.20"
+hyper-timeout = "0.3"
+futures = "0.3"
+rustls = "0.17"
+url = "2.1"
+bytes = "0.5"
+
+why_core = { path = "../core", version = "5.3.0" }
+why_chain = { path = "../chain", version = "5.3.0" }
+why_p2p = { path = "../p2p", version = "5.3.0" }
+why_pool = { path = "../pool", version = "5.3.0" }
+why_store = { path = "../store", version = "5.3.0" }
+grin_util = { path = "../util", version = "5.3.0" }
